@@ -36,8 +36,19 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls',
+    'south',
+    'ckeditor',
+    'web',
 )
+MEDIA_ROOT = '/Users/yorkie/workspace/djangosite/public/media'
+MEDIA_URL = '/media/'
+
+CKEDITOR_UPLOAD_PATH = MEDIA_ROOT + "/ck_upload/"
+CKEDITOR_CONFIGS = {
+   'default': {
+       'toolbar': [['Source', 'Format', 'Bold', 'Italic', 'Underline', 'Link', 'Unlink', 'Table', 'Image']],
+   },
+}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
