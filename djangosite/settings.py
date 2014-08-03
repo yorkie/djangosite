@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 # Quick-start development settings - unsuitable for production
@@ -41,7 +40,7 @@ INSTALLED_APPS = (
     'ckeditor',
     'web',
 )
-MEDIA_ROOT = os.path.join(SITE_ROOT, 'public/media')
+MEDIA_ROOT = os.path.join(SITE_ROOT, '../public/media')
 MEDIA_URL = '/media/'
 
 CKEDITOR_UPLOAD_PATH = MEDIA_ROOT + "/ck_upload/"
