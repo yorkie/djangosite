@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.template import RequestContext, loader
-from web.models import Poll
+from web.models import Category, Article
 
 # Create your views here.
 def index(request):
-	latest_poll_list = Poll.objects.order_by('-pub_date')[:5]
+	latest_poll_list = Article.objects.order_by('-pub_date')[:5]
 	template = loader.get_template('polls/index.html')
 	context = RequestContext(request, {
 		'latest_poll_list': latest_poll_list
@@ -14,8 +14,8 @@ def index(request):
 
 def detail(request, poll_id):
 	try:
-		poll = Poll.objects.get(pk=poll_id)
-	except Poll.DoesNotExist:
+		poll = Article.objects.get(pk=poll_id)
+	except Article.DoesNotExist:
 		raise Http404
 	return render(request, 'polls/detail.html', {'poll': poll})
 

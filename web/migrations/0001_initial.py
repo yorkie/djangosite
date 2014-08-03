@@ -8,50 +8,50 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Choice'
-        db.create_table(u'web_choice', (
+        # Adding model 'Category'
+        db.create_table(u'web_category', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('title', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('lang', self.gf('django.db.models.fields.IntegerField')(max_length=10)),
+            ('lang', self.gf('django.db.models.fields.IntegerField')(default=1)),
         ))
-        db.send_create_signal(u'web', ['Choice'])
+        db.send_create_signal(u'web', ['Category'])
 
-        # Adding model 'Poll'
-        db.create_table(u'web_poll', (
+        # Adding model 'Article'
+        db.create_table(u'web_article', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('title', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('choice', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['web.Choice'])),
+            ('category', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['web.Category'])),
             ('content', self.gf('ckeditor.fields.RichTextField')(blank=True)),
             ('create_date', self.gf('django.db.models.fields.DateTimeField')()),
             ('modify_date', self.gf('django.db.models.fields.DateTimeField')()),
-            ('lang', self.gf('django.db.models.fields.IntegerField')(max_length=10)),
+            ('lang', self.gf('django.db.models.fields.IntegerField')(default=1)),
         ))
-        db.send_create_signal(u'web', ['Poll'])
+        db.send_create_signal(u'web', ['Article'])
 
 
     def backwards(self, orm):
-        # Deleting model 'Choice'
-        db.delete_table(u'web_choice')
+        # Deleting model 'Category'
+        db.delete_table(u'web_category')
 
-        # Deleting model 'Poll'
-        db.delete_table(u'web_poll')
+        # Deleting model 'Article'
+        db.delete_table(u'web_article')
 
 
     models = {
-        u'web.choice': {
-            'Meta': {'object_name': 'Choice'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'lang': ('django.db.models.fields.IntegerField', [], {'max_length': '10'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '200'})
-        },
-        u'web.poll': {
-            'Meta': {'object_name': 'Poll'},
-            'choice': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['web.Choice']"}),
+        u'web.article': {
+            'Meta': {'object_name': 'Article'},
+            'category': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['web.Category']"}),
             'content': ('ckeditor.fields.RichTextField', [], {'blank': 'True'}),
             'create_date': ('django.db.models.fields.DateTimeField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'lang': ('django.db.models.fields.IntegerField', [], {'max_length': '10'}),
+            'lang': ('django.db.models.fields.IntegerField', [], {'default': '1'}),
             'modify_date': ('django.db.models.fields.DateTimeField', [], {}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '200'})
+        },
+        u'web.category': {
+            'Meta': {'object_name': 'Category'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'lang': ('django.db.models.fields.IntegerField', [], {'default': '1'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         }
     }
